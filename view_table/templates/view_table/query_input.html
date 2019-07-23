@@ -1,0 +1,91 @@
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>Static Top Navbar Example for Bootstrap</title>
+
+  
+
+  
+  
+
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+  <!-- 부가적인 테마 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+  <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <!-- Static navbar -->
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'view_table:home' %}">beauty item recommendation system</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="{% url 'view_table:query_input' %}">query input</a></li>
+          <li><a href="{% url 'view_table:query_result' %}">query result</a></li>
+          <li><a href="{% url 'view_table:data_collection' %}">data collection</a></li>
+          <li><a href="{% url 'view_table:status_information' %}">status information</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+
+  
+  <div class="container theme-showcase" role="main">
+
+      
+      <div class = col-sm-6>
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Query Input</h3>
+              </div>
+              <form action="{% url "view_table:upload_csv" %}" method="POST" enctype="multipart/form-data" class="form-horizontal"> 
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name" class="col-md-3 col-sm-3 col-xs-12 control-label">File: </label>
+                    <div class="col-md-8">
+                        <input type="file" name="csv_file" id="csv_file" required="True" class="form-control">
+                    </div>                    
+                </div>
+                <div class="form-group">                    
+                    <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+                         <button class="btn btn-primary"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload </button>
+                    </div> 
+                </div>
+                </form>
+          </div>    
+      </div>
+
+      <div class = col-sm-6>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Query Input</h3>
+            </div>
+            <form action = "{% url 'view_table:recommand_product' %}">
+                <textarea cols="40" rows="10" name="fulltext">  </textarea>
+                <br>
+                <input type="submit" value = "Count!" />
+            </form>
+        </div>    
+    </div>
+      
+      
+     
+
+  </div>
+
+
+
+</body>
+</html>
