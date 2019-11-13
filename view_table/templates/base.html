@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://unpkg.com/tailwindcss@1.0.4/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/jumbotron/">
+    <link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <style>
+        /* Tab content - closed */
+        .tab-content {
+        max-height: 0;
+        -webkit-transition: max-height .35s;
+        -o-transition: max-height .35s;
+        transition: max-height .35s;
+        }
+        /* :checked - resize to full height */
+        .tab input:checked ~ .tab-content {
+        max-height: 100vh;
+        }
+        /* Label formatting when open */
+        .tab input:checked + label{
+        /*@apply text-xl p-5 border-l-2 border-indigo-500 bg-gray-100 text-indigo*/
+        font-size: 1.25rem; /*.text-xl*/
+        padding: 1.25rem; /*.p-5*/
+        border-left-width: 2px; /*.border-l-2*/
+        border-color: #6574cd; /*.border-indigo*/
+        background-color: #f8fafc; /*.bg-gray-100 */
+        color: #6574cd; /*.text-indigo*/
+        }
+        /* Icon */
+        .tab label::after {
+        float:right;
+        right: 0;
+        top: 0;
+        display: block;
+        width: 1.5em;
+        height: 1.5em;
+        line-height: 1.5;
+        font-size: 1.25rem;
+        text-align: center;
+        -webkit-transition: all .35s;
+        -o-transition: all .35s;
+        transition: all .35s;
+        }
+        /* Icon formatting - closed */
+        .tab input[type=checkbox] + label::after {
+        content: "+";
+        font-weight:bold; /*.font-bold*/
+        border-width: 1px; /*.border*/
+        border-radius: 9999px; /*.rounded-full */
+        border-color: #b8c2cc; /*.border-grey*/
+        }
+        .tab input[type=radio] + label::after {
+        content: "\25BE";
+        font-weight:bold; /*.font-bold*/
+        border-width: 1px; /*.border*/
+        border-radius: 9999px; /*.rounded-full */
+        border-color: #b8c2cc; /*.border-grey*/
+        }
+        /* Icon formatting - open */
+        .tab input[type=checkbox]:checked + label::after {
+        transform: rotate(315deg);
+        background-color: #6574cd; /*.bg-indigo*/
+        color: #f8fafc; /*.text-grey-lightest*/
+        }
+        .tab input[type=radio]:checked + label::after {
+        transform: rotateX(180deg);
+        background-color: #6574cd; /*.bg-indigo*/
+        color: #f8fafc; /*.text-grey-lightest*/
+        }
+     </style>
+     <style>
+			.carousel-open:checked + .carousel-item {
+				position: static;
+				opacity: 100;
+			}
+			.carousel-item {
+				-webkit-transition: opacity 0.6s ease-out;
+				transition: opacity 0.6s ease-out;
+			}
+			#carousel-1:checked ~ .control-1,
+			#carousel-2:checked ~ .control-2,
+			#carousel-3:checked ~ .control-3 {
+				display: block;
+			}
+			.carousel-indicators {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				bottom: 2%;
+				left: 0;
+				right: 0;
+				text-align: center;
+				z-index: 10;
+			}
+			#carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
+			#carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
+			#carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
+				color: #2b6cb0;  /*Set to match the Tailwind colour you want the active one to be */
+			}
+		</style>
+    {% load static %}
+</head>
+<body>
+    <nav class="flex items-center justify-between flex-wrap bg-teal-500 ">
+        <div class="flex items-center flex-shrink-0 text-white mr-6">
+          <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
+          <span class="font-semibold text-4xl tracking-tight">recommend</span>
+          <a href=""></a>
+        </div>
+        
+        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto" style="margin-top: 20px;" >
+          <div class="text-3xl lg:flex-grow">
+            <a href="{% url 'view_table:home' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+              home
+            </a>
+            <a href="{% url 'view_table:query_result' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+              recommendation
+            </a>
+            <a href="{% url 'view_table:trend' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+              trend
+            </a>
+            <a href="{% url 'view_table:perfomance' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+                성능평가
+              </a>
+            {% if user.is_active %}
+              <a href="{%url 'logout' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+                logout
+              </a>
+            {% else %}
+              <a href="{%url 'login' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+                login
+              </a>
+              <a href="" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+                signup
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+    
+   {% block content %}
+   {% endblock %}
+</body>
+<script>
+    /* Optional Javascript to close the radio button version by clicking it again */
+    var myRadios = document.getElementsByName('tabs2');
+    var setCheck;
+    var x = 0;
+    for(x = 0; x < myRadios.length; x++){
+        myRadios[x].onclick = function(){
+            if(setCheck != this){
+                 setCheck = this;
+            }else{
+                this.checked = false;
+                setCheck = null;
+        }
+        };
+    }
+ </script>
+</html>

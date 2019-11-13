@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load Charts and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Draw the pie chart for Sarah's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawSarahChart);
+
+      // Draw the pie chart for the Anthony's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawAnthonyChart);
+
+      // Callback that draws the pie chart for Sarah's pizza.
+      function drawSarahChart() {
+
+        var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Topping');
+      data.addColumn('number', 'Slices');
+      data.addRows([
+        ['tfidf5', Number("{{rank1.tfidf5}}")],
+        ['tfidf4', Number("{{rank1.tfidf4}}")],
+        ['tfidf3', Number("{{rank1.tfidf3}}")], 
+        ['tfidf2', Number("{{rank1.tfidf2}}")],
+        ['tfidf1', Number("{{rank1.tfidf1}}")]
+        // ['rate', 0.01024]
+      ]);
+
+  var options = {
+    title: "{{rank1.keyword}}",
+    hAxis: {
+      title: 'Time of Day',
+    },
+    vAxis: {
+      title: 'Rating (scale of 1-10)'
+    }
+  };
+
+        // Instantiate and draw the chart for Sarah's pizza.
+        var chart = new google.visualization.ColumnChart(document.getElementById('Sarah_chart_div'));
+        chart.draw(data, options);
+      }
+
+      // Callback that draws the pie chart for Anthony's pizza.
+      function drawAnthonyChart() {
+
+        
+var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Topping');
+      data.addColumn('number', 'Slices');
+      data.addRows([
+        ['tfidf5', Number("{{rank2.tfidf5}}")],
+        ['tfidf4', Number("{{rank2.tfidf4}}")],
+        ['tfidf3', Number("{{rank2.tfidf3}}")], 
+        ['tfidf2', Number("{{rank2.tfidf2}}")],
+        ['tfidf1', Number("{{rank2.tfidf1}}")]
+        // ['rate', 0.01024]
+      ]);
+
+  var options = {
+    title: "{{rank2.keyword}}",
+    hAxis: {
+      title: 'Time of Day',
+    },
+    vAxis: {
+      title: 'Rating (scale of 1-10)'
+    }
+  };
+
+        // Instantiate and draw the chart for Anthony's pizza.
+        var chart = new google.visualization.ColumnChart(document.getElementById('Anthony_chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <!--Table and divs that hold the pie charts-->
+    <table class="columns">
+      <tr>
+        <td><div id="Sarah_chart_div" style="border: 1px solid #ccc"></div></td>
+        <td><div id="Anthony_chart_div" style="border: 1px solid #ccc"></div></td>
+      </tr>
+    </table>
+  </body>
+</html>
+

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawMultSeries1);
+google.charts.setOnLoadCallback(drawMultSeries2);
+google.charts.setOnLoadCallback(drawMultSeries3);
+
+function drawMultSeries1() {
+var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Topping');
+      data.addColumn('number', '유사율');
+      data.addRows([
+        ['10', 60],
+        ['40', 43],
+        ['80', 30],
+        ['120', 17],
+        ['180', 13],
+        ['200', 17],
+      ]);
+
+  var options = {
+    title: "실험1. 속성 추천 알고리즘과 머신러닝 알고리즘의 추천 아이템 수의 변화에 따른 중복추천 아이템 수의 유사도",
+    hAxis: {
+      title: '총 추천 아이템 수',
+    },
+    vAxis: {
+      title: '유사율 (중복추천/총추천)*100'
+    }
+  };
+
+  var chart = new google.visualization.ColumnChart(
+    document.getElementById('chart_div1'));
+
+  chart.draw(data, options);
+}
+function drawMultSeries2() {
+var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Topping');
+      data.addColumn('number', '중복율');
+      data.addRows([
+        ['1', 26],
+        ['5', 28],
+        ['10', 29],
+        ['15', 28],
+        ['20', 31],
+        ['25', 29],
+        // ['rate', 0.01024]
+      ]);
+
+  var options = {
+    title: "실험 2. 머신러닝 알고리즘의 학습 수에 따른 속성 알고리즘과의 중복추천 변화",
+    hAxis: {
+      title: '학습반복횟수',
+    },
+    vAxis: {
+      title: '중복율'
+    }
+  };
+
+  var chart = new google.visualization.ColumnChart(
+    document.getElementById('chart_div2'));
+
+  chart.draw(data, options);
+}
+
+</script>
+
+
+<div class="flex items-center justify-center h-64">
+    <div class="bg-teal-500 text-white font-bold rounded-lg border shadow-lg p-10 text-xl">
+        <strong class="text-white">두 추천 알고리즘의 성능평가</strong> <br><br>
+        (속성 추천 알고리즘 / 머신러닝 추천 알고리즘) <br>
+        실험1. 속성 알고리즘과 머신러닝알고리즘의 추천 아이템 수의 변화에 따른 중복 추천 아이템 수의 유사도<br>
+        실험2. 머신러닝 알고리즘의 학습 수에 따른 속성 알고리즘과의 중복 추천 변화
+    </div>
+    
+</div>
+
+    <div class="jumbotron">
+        <div class="container font-bold text-xl" style="margin-bottom: 60px;">
+            <h1 class="display-3">실험 1</h1> 
+            <div class="block h-full w-full" id="chart_div1" ></div>
+            <p>결과: 총 추천 아이템 수가 증가할 수록 유사율도 비례할 것이라는 예상과 다른 결과가 나옴</p>
+        </div>
+    </div>
+    <div class="jumbotron">
+        <div class="container font-bold text-xl" style="margin-bottom: 60px;>
+            <h1 class="display-3">실험 2</h1> 
+            <div class="block h-full w-full" id="chart_div2" ></div>
+            <p class="font-bold text-xl">결과: 학습반복횟수가 증가할수록 중복율도 비례할 것이라는 예상과 밀접하지 않은 결과가 나옴</p>
+        </div>
+    </div>
+    
+    <div class="alert alert-danger" role="alert">
+        
+    </div>
+    <div class="bg-teal-500 text-white font-bold rounded-lg border shadow-lg p-10 text-xl" style="margin-top: 30px;">
+            <p class="text-xl">결과 고찰: 머신러닝추천알고리즘에서 사용자 구매내역 테이블에서 일정확률(50%)로 무작위 아이템을 구매하고, 혹은 자신의 속성을
+                    참고하여 아이템을 구매하도록 구현했기 때문에 예상과 다른 결과가 나욌다. 앞으로는 사용자 data set생성 부분을 개선할 예정이다.
+            </p>            </div>
+    
+{% endblock content %}

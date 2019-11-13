@@ -1,0 +1,188 @@
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawMultSeries1);
+google.charts.setOnLoadCallback(drawMultSeries2);
+google.charts.setOnLoadCallback(drawMultSeries3);
+
+function drawMultSeries1() {
+var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Topping');
+      data.addColumn('number', 'Slices');
+      data.addRows([
+        ['tfidf5', Number("{{rank1.tfidf5}}")],
+        ['tfidf4', Number("{{rank1.tfidf4}}")],
+        ['tfidf3', Number("{{rank1.tfidf3}}")],
+        ['tfidf2', Number("{{rank1.tfidf2}}")],
+        ['tfidf1', Number("{{rank1.tfidf1}}")],
+        // ['rate', 0.01024]
+      ]);
+
+  var options = {
+    title: "rank1. {{rank1.keyword}}",
+    hAxis: {
+      title: 'Time of Day',
+    },
+    vAxis: {
+      title: 'Rating (scale of 1-10)'
+    }
+  };
+
+  var chart = new google.visualization.ColumnChart(
+    document.getElementById('chart_div1'));
+
+  chart.draw(data, options);
+}
+function drawMultSeries2() {
+var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Topping');
+      data.addColumn('number', 'Slices');
+      data.addRows([
+        ['tfidf5', Number("{{rank2.tfidf5}}")],
+        ['tfidf4', Number("{{rank2.tfidf4}}")],
+        ['tfidf3', Number("{{rank2.tfidf3}}")],
+        ['tfidf2', Number("{{rank2.tfidf2}}")],
+        ['tfidf1', Number("{{rank2.tfidf1}}")],
+        // ['rate', 0.01024]
+      ]);
+
+  var options = {
+    title: "rank2. {{rank2.keyword}}",
+    hAxis: {
+      title: 'Time of Day',
+    },
+    vAxis: {
+      title: 'Rating (scale of 1-10)'
+    }
+  };
+
+  var chart = new google.visualization.ColumnChart(
+    document.getElementById('chart_div2'));
+
+  chart.draw(data, options);
+}
+function drawMultSeries3() {
+var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Topping');
+      data.addColumn('number', 'Slices');
+      data.addRows([
+        ['tfidf5', Number("{{rank3.tfidf5}}")],
+        ['tfidf4', Number("{{rank3.tfidf4}}")],
+        ['tfidf3', Number("{{rank3.tfidf3}}")],
+        ['tfidf2', Number("{{rank3.tfidf2}}")],
+        ['tfidf1', Number("{{rank3.tfidf1}}")],
+        // ['rate', 0.01024]
+      ]);
+
+  var options = {
+    title: "rank3. {{rank3.keyword}}",
+    hAxis: {
+      title: 'Time of Day',
+    },
+    vAxis: {
+      title: 'Rating (scale of 1-10)'
+    }
+  };
+
+  var chart = new google.visualization.ColumnChart(
+    document.getElementById('chart_div3'));
+
+  chart.draw(data, options);
+}
+</script>
+  <div class="carousel relative shadow-2xl ">
+    <div class="carousel-inner relative overflow-hidden w-full">
+      <!--Slide 1-->
+      <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
+      <div class="carousel-item absolute opacity-0" style="height:50vh;">
+          <div class="block h-full w-full" id="chart_div1" ></div>
+      </div>
+      <label for="carousel-3" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
+      <label for="carousel-2" class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+      
+    <!--Slide 2-->
+    <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
+    <div class="carousel-item absolute opacity-0" style="height:50vh; width: 100%;">
+      <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+          <div class="block h-full w-full" id="chart_div2"  ></div>
+    </div>
+    <label for="carousel-1" class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
+    <label for="carousel-3" class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label> 
+      
+      <!--Slide 3-->
+      <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
+      <div class="carousel-item absolute opacity-0" style="height:50vh; width: 100%;">
+        <div class="block h-full w-full" id="chart_div3"  ></div>
+      </div>
+      <label for="carousel-2" class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
+      <label for="carousel-1" class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
+  
+      
+      
+    </div>
+  </div>
+  <!-- Modal trigger -->
+  <label class="button" for="element-toggle">tf-idf 추이 보기</label>
+  <input id="element-toggle" type="checkbox" class="bg-teal-500" /> 
+  <div class="flex items-center justify-center h-64">
+    
+    <div class="bg-teal-500 text-white font-bold rounded-lg border shadow-lg p-10 text-xl">
+      <strong class="text-white">twitterian's HOT-TOPIC</strong> <br>
+      {{trend_result.time}}시간동안 {{trend_result.tweet}}개의 트윗을 수집하여 {{trend_result.beauty}}개의 화장품 관련 키워드를 추출했습니다.
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="myModal">
+      <div class="modal-background"></div>
+      <div class="modal-content" >
+          <div class="bg-teal-500 text-white font-bold rounded-lg border shadow-lg p-10 text-xl">
+              <strong class="text-white">HOT-TOPIC 알고리즘</strong> <br>
+              시간대별로 키워드의 tf_idf값을 구한다. <br>현재시간의 tf_idf값(tf_idf1)과 이전시간의 tf_idf값(tf_idf2)으로 키워드의 출현 비율을 구하여 랭킹화.
+          </div>
+          <table class="table-fixed" style="background-color: white;">
+              <thead>
+                <tr>
+                  <th class="px-4 py-2">keyword</th>
+                  <th class="px-4 py-2">tf-idf1</th>
+                  <th class="px-4 py-2">tf-idf2</th>
+                  <th class="px-4 py-2">tf-idf3</th>
+                  <th class="px-4 py-2">tf-idf4</th>
+                  <th class="px-4 py-2">tf-idf5</th>
+                  <th class="px-4 py-2">rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for r in hot_topic %}
+                <tr>
+                    <td class="border px-4 py-2">{{r.keyword}}</td>
+                <td class="border px-4 py-2">{{r.tfidf1}}</td>
+                <td class="border px-4 py-2">{{r.tfidf2}}</td>
+                <td class="border px-4 py-2">{{r.tfidf3}}</td>
+                <td class="border px-4 py-2">{{r.tfidf4}}</td>
+                <td class="border px-4 py-2">{{r.tfidf5}}</td>
+                <td class="border px-4 py-2">{{r.rate}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+      </div>
+      <label class="modal-close is-large" for="element-toggle"></label>
+    </div>
+    <style>
+     #element-toggle {
+     display: none;
+   }
+   #element-toggle:checked ~ #myModal {
+     display: flex;
+   }
+   </style>  
+  
+{% endblock content %}
+
